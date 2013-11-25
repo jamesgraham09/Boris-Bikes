@@ -1,9 +1,9 @@
 # This is a description of the tests for the Class Bike
 
 require_relative "../lib/bike"
+require_relative "../lib/docking_station"
 
 describe Bike do
-	
 	
 	let(:bike) {Bike.new}
 	# let() is an rspec helper that calls the block before every test
@@ -27,8 +27,28 @@ describe Bike do
 
 end		
 
+describe DockingStation do
+
+	let(:bike) {Bike.new}
+	let(:station) {DockingStation.new}
+
+	it "should accept a bike" do
+	expect(station.bike_count).to eq(0)
+	station.dock(bike)
+	expect(station.bike_count).to eq(1)
+	# In a world of bikes and stations, docking a bike increases bike count at the station
+	end
+
+	it "should release a bike" do
+	expect(station.bike_count).to eq(0)
+	station.dock(bike)
+	expect(station.bike_count).to eq(1)
+	station.undock(bike)
+	expect(station.bike_count).to eq(0)
+	end
 
 
+end
 
 
 
