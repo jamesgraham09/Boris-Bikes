@@ -1,1 +1,1 @@
-This is a README file for the Boris  Biokes project at Makers Academy
+This is a README file for the Boris  Bikes project at Makers Academy
