@@ -35,6 +35,22 @@ describe DockingStation do
 		station.dock(bike)
 		expect(station.bike_count).to eq(1)
 	end
+
+	it "should be able to remove (undock) a bike" do
+		bike = Bike.new
+		station = DockingStation.new
+		station.dock(bike)
+		expect(station.bike_count).to eq(1)
+		station.undock(bike)
+		expect(station.bike_count).to eq(0)
+	end
+
+	it "should be full when it reaches capacity" do
+		bike = Bike.new
+		station = DockingStation.new
+		station.dock(bike) * 20
+		expect(station.bike.full).to eq(true)
+	end
 end
 	
 	# it "should be able to release (undock) a bike"

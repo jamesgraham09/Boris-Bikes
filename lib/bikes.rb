@@ -1,7 +1,14 @@
 class Bike
-	def initialize
+
+	attr_accessor :name
+	attr_accessor :broken
+	attr_accessor :colour
+
+
+	def initialize(name="standard")
 		@colour = "pink"
 		@broken = false
+		@name = name
 	end 
 
 	def broken?
