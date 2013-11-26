@@ -15,88 +15,62 @@ describe Bike do
 	end
 
 	it "should be able to break" do
-	bike.break
-	expect(bike).to be_broken
+		bike.break
+		expect(bike).to be_broken
 	end
 
 	it "should be able to get fixed" do
-	bike.break
-	bike.fix
-	expect(bike).not_to be_broken
+		bike.break
+		bike.fix
+		expect(bike).not_to be_broken
 	end
 
 end		
 
-describe DockingStation do
+	require './lib/bike_container'
+	class ContainerHolder; include BikeContainer; end
+
+	describe BikeContainer do
 
 	let(:bike) {Bike.new}
-	let(:station) {DockingStation.new}
-	let(:station) {DockingStation.new(:capacity => 20)}
+	let(:container) {ContainerHolder.new}
 
 	it "should accept a bike" do
-		expect(station.bike_count).to eq(0)
-		station.dock(bike)
-		expect(station.bike_count).to eq(1)
+		expect(container.bike_count).to eq(0)
+		container.dock(bike)
+		expect(container.bike_count).to eq(1)
 	# In a world of bikes and stations, docking a bike increases bike count at the station
 	end
 
 	def fill_station(station)
-		20.times {station.dock(Bike.new)}
+		10.times {station.dock(Bike.new)}
 	end
 
 	it "should release a bike" do
-		expect(station.bike_count).to eq(0)
-		station.dock(bike)
-		expect(station.bike_count).to eq(1)
-		station.undock(bike)
-		expect(station.bike_count).to eq(0)
+		expect(container.bike_count).to eq(0)
+		container.dock(bike)
+		expect(container.bike_count).to eq(1)
+		container.undock(bike)
+		expect(container.bike_count).to eq(0)
 	end
 
 	it "should know when it's full" do
-		expect(station).not_to be_full
-		fill_station(station)
-		expect(station).to be_full
+		expect(container).not_to be_full
+		fill_station(container)
+		expect(container).to be_full
 	end
 
 	it "should not accept a bike if it's full" do
-		fill_station(station)
-		expect(lambda {station.dock(bike)}).to raise_error(RuntimeError)
+		fill_station(container)
+		expect(lambda {container.dock(bike)}).to raise_error(RuntimeError)
 	end
 
 	it "should provide the list of available bikes" do
 		working_bike, broken_bike = Bike.new, Bike.new
 		broken_bike.break
-		station.dock(working_bike)
-		station.dock(broken_bike)
-		expect(station.available_bikes).to eq([working_bike])
+		container.dock(working_bike)
+		container.dock(broken_bike)
+		expect(container.available_bikes).to eq([working_bike])
 	end
 
-
-
 end
-
-
-
-# 1 Bikes
-# 	a broken or not broken
-# 	b unique identifier
-# 	c interacts with van
-# 	d interacts with station
-# 	e interacts with user
-
-# Users
-# 	Can take bike
-# 	Has name, id and payment details
-# 	cannot interact with vans
-
-# Stations
-# 	Multiple Stations
-# 	fixed capacity of bike
-
-# Bike 'transaction'
-# 	1 bike at a time
-# 	Must be removed from inv and added to new inv
-# 	Passes capactity restrictions
-
-# User transaction
-# 	Must pay before taken
