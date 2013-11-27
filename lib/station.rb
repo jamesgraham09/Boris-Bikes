@@ -1,32 +1,14 @@
-class DockingStation
-	def initialize
+require_relative 'bike_container.rb'
+
+class Station
+	
+	include BikeContainer
+
+	DEFAULT_CAPACITY = 50
+
+	def initialize(options = {})
 		@bikes = []
-		@capacity = 20
+		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
 	end
-
-	def bikes
-		@bikes
-	end
-
-	def dock(bike)
-		@bikes << bike
-	end
-
-	def capacity
-		@capacity
-	end
-
-	def undock(bike)
-		@bikes.delete bike
-	end
-
-	def bike_count
-		@bikes.count
-	end
-
-	def full?
-		bike_count == @capacity
-	end
-
+	
 end
-

@@ -1,5 +1,4 @@
 class Bike
-
 	attr_accessor :name
 	attr_accessor :broken
 	attr_accessor :name
@@ -26,5 +25,5 @@ class Bike
 	def respray(colour)
 		@colour = colour
 	end
-	require_relative 'bikes.rb'
+	# require_relative 'bikes.rb'
 end
