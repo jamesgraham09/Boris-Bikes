@@ -2,7 +2,7 @@ class Bike
 
 	attr_accessor :name
 	attr_accessor :broken
-	attr_accessor :colour
+	attr_accessor :name
 
 
 	def initialize(name="standard")

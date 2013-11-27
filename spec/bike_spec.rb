@@ -46,10 +46,9 @@ describe DockingStation do
 	end
 
 	it "should be full when it reaches capacity" do
-		bike = Bike.new
 		station = DockingStation.new
-		station.dock(bike) * 20
-		expect(station.bike.full).to eq(true)
+		station.dock(Bike.new) *20
+		expect(station.full?).to eq(true)
 	end
 end
 	

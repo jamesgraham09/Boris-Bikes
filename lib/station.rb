@@ -12,6 +12,10 @@ class DockingStation
 		@bikes << bike
 	end
 
+	def capacity
+		@capacity
+	end
+
 	def undock(bike)
 		@bikes.delete bike
 	end
@@ -20,10 +24,9 @@ class DockingStation
 		@bikes.count
 	end
 
-	def full
-		@bikes.count = @capacity
+	def full?
+		bike_count == @capacity
 	end
 
 end
-
 

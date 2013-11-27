@@ -15,3 +15,11 @@ bike.respray("yellow")
 puts bike.colour
 
 station.bikes.each { |bike| puts "#{bike.name}, #{bike.broken}, #{bike.colour}"}
+puts station.bikes.inspect
+
+puts "XXXX"
+
+station = DockingStation.new
+20.times {station.dock(Bike.new)}
+puts station.bike_count
+expect(station.full?).to eq(true)
