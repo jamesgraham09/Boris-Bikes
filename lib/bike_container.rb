@@ -16,6 +16,7 @@ module BikeContainer
 	end
 
 	def undock(bike)
+		raise "Station is empty" if empty?
 		bikes.delete bike
 	end
 
@@ -29,6 +30,10 @@ module BikeContainer
 
 	def full?
 		bike_count == capacity
+	end
+
+	def empty?
+		bike_count == 0
 	end
 
 end

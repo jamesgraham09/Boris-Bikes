@@ -30,7 +30,18 @@ describe Station do
 		expect(station.full?).to eq(false)
 	end
 
-		it "should be full when it reaches capacity" do
+	it "should provide a list of available bikes" do
+		working_bike = Bike.new
+		broken_bike = Bike.new
+		broken_bike.break
+		station = Station.new({:capacity => 50})
+		station.dock(working_bike)
+		station.dock(broken_bike)
+		expect(station.available_bikes).to eq([working_bike])
+	end
+
+
+	it "should be full when it reaches capacity" do
 		station = Station.new({:capacity => 10})
 		10.times {station.dock(Bike.new)}
 		expect(station.full?).to eq(true)
@@ -47,6 +58,10 @@ describe Station do
 		expect(lambda { station.dock(Bike.new)}).to raise_error(RuntimeError)
 	end
 
+	it "should not release a bike if it is empty" do
+		station = Station.new()
+		expect(lambda { station.undock(Bike.new)}).to raise_error(RuntimeError)
+	end
 
 end
 
