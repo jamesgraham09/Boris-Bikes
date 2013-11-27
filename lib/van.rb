@@ -1,8 +1,7 @@
 require_relative 'bike_container.rb'
 
-class Station
+class Van
 	
 	include BikeContainer
 
 end
-

@@ -1,8 +1,8 @@
 require_relative '../lib/bikes.rb'
 require_relative '../lib/station.rb'
-require_relative '../lib/container.rb'
+require_relative '../lib/bike_container.rb'
 
-station = DockingStation.new
+station = Station.new
 station.dock(Bike.new("penny farthing"))
 station.dock(Bike.new)
 station.dock(Bike.new("live strong"))
@@ -19,7 +19,7 @@ puts station.bikes.inspect
 
 puts "XXXX"
 
-station = DockingStation.new
+station = Station.new
 20.times {station.dock(Bike.new)}
 puts station.bike_count
 expect(station.full?).to eq(true)

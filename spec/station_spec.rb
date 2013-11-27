@@ -40,4 +40,13 @@ describe Station do
 		station = Station.new()
 		expect(station.capacity).to be > 0
 	end
+
+	it "should not accept a bike if it's full" do
+		station = Station.new({:capacity => 10})
+		10.times {station.dock(Bike.new)}
+		expect(lambda { station.dock(Bike.new)}).to raise_error(RuntimeError)
+	end
+
+
 end
+

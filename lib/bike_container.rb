@@ -1,15 +1,22 @@
 module BikeContainer
 
+	DEFAULT_CAPACITY = 50
+
+	def initialize(options = {})
+		@capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
+	end
+
 	def bikes
-		@bikes
+		@bikes ||= []
 	end
 
 	def dock(bike)
-		@bikes << bike
+		raise "Station is full" if full? 
+		bikes << bike
 	end
 
 	def undock(bike)
-		@bikes.delete bike
+		bikes.delete bike
 	end
 
 	def capacity
@@ -17,11 +24,11 @@ module BikeContainer
 	end
 
 	def bike_count
-		@bikes.count
+		bikes.count
 	end
 
 	def full?
-		bike_count == @capacity
+		bike_count == capacity
 	end
 
 end
